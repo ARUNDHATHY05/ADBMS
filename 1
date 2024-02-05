@@ -1,0 +1,52 @@
+SQL> create table student(id int,name varchar(20));
+
+Table created.
+SQL> insert into student values(1,'jaiden');
+
+1 row created.
+
+SQL> select * from student;
+
+	ID NAME
+---------- --------------------
+	 1 jaiden
+SQL> insert into student values(&id,'&name');
+Enter value for id: 2
+Enter value for name: cyril
+old   1: insert into student values(&id,'&name')
+new   1: insert into student values(2,'cyril')
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for name: ajith
+old   1: insert into student values(&id,'&name')
+new   1: insert into student values(3,'ajith')
+
+1 row created.
+
+SQL> /
+Enter value for id: 4
+Enter value for name: naaz
+old   1: insert into student values(&id,'&name')
+new   1: insert into student values(4,'naaz')
+
+1 row created.
+
+SQL> select * from student;
+
+	ID NAME
+---------- --------------------
+	 1 jaiden
+	 2 cyril
+	 3 ajith
+	 4 naaz
+SQL> select name from student;
+
+NAME
+--------------------
+jaiden
+cyril
+ajith
+naaz
