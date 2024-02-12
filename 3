@@ -1,0 +1,491 @@
+CREATE TABLE CUSTOMER(ID INT,NAME VARCHAR(25),ADDRESS VARCHAR(50),CITY VARCHAR(25),COUNTRY VARCHAR(15),AGE INT,SALARY INT);
+
+Table created.
+
+SQL> DESC TABLE;\
+SP2-0565: Illegal identifier.
+SQL> DESC TABLE;
+ERROR:
+ORA-00931: missing identifier
+
+
+SQL> DESC CUSTOMER;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID						    NUMBER(38)
+ NAME						    VARCHAR2(25)
+ ADDRESS					    VARCHAR2(50)
+ CITY						    VARCHAR2(25)
+ COUNTRY					    VARCHAR2(15)
+ AGE						    NUMBER(38)
+ SALARY 					    NUMBER(38)
+
+SQL> INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY);
+Enter value for id: 1
+Enter value for name: SHIVYA
+Enter value for address: ^Z
+Enter value for city: 
+Enter value for country: 
+Enter value for age: 
+Enter value for salary: 
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(1,'SHIVYA','','','',,)
+INSERT INTO CUSTOMER VALUES(1,'SHIVYA','','','',,)
+                                                *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> 
+SQL> 
+SQL> INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY);
+Enter value for id: 1
+Enter value for name: KIARA
+Enter value for address: MAHARASTRA
+Enter value for city: NAZIK 
+Enter value for country: INDIA
+Enter value for age: 28
+Enter value for salary: 38000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(1,'KIARA','MAHARASTRA','NAZIK','INDIA',28,38000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for name: PRIYA    
+Enter value for address: THRISSUR
+Enter value for city: PUTHOLE
+Enter value for country: INDIA
+Enter value for age: 28
+Enter value for salary: 32000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(2,'PRIYA','THRISSUR','PUTHOLE','INDIA',28,32000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for name: NITHYASREE
+Enter value for address: GHEVRA
+Enter value for city: DELHI
+Enter value for country: INDIA
+Enter value for age: 32
+Enter value for salary: 50000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(3,'NITHYASREE','GHEVRA','DELHI','INDIA',32,50000)
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY);
+Enter value for id: 1
+Enter value for name: KIARA
+Enter value for address: DELHI
+Enter value for city: 
+Enter value for country: 
+Enter value for age: 
+Enter value for salary: 
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(1,'KIARA','DELHI','','',,)
+INSERT INTO CUSTOMER VALUES(1,'KIARA','DELHI','','',,)
+                                                    *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> 
+SQL> 
+SQL> INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY);
+Enter value for id: 1
+Enter value for name: KIARA
+Enter value for address: MUMBAI
+Enter value for city: BANDRA
+Enter value for country: INDIA
+Enter value for age: 28
+Enter value for salary: 65000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(1,'KIARA','MUMBAI','BANDRA','INDIA',28,65000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 2        
+Enter value for name: PRIYA
+Enter value for address: CHENNAI
+Enter value for city: KOTTUR
+Enter value for country: INDIA'
+Enter value for age: 32
+Enter value for salary: 32000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(2,'PRIYA','CHENNAI','KOTTUR','INDIA'',32,32000)
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> /
+Enter value for id: 2
+Enter value for name: PRIYA
+Enter value for address: KOTTUR
+Enter value for city: CHENNAI
+Enter value for country: /
+Enter value for age: 
+Enter value for salary: 
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(2,'PRIYA','KOTTUR','CHENNAI','/',,)
+INSERT INTO CUSTOMER VALUES(2,'PRIYA','KOTTUR','CHENNAI','/',,)
+                                                             *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> DROP TABLE CUSTOMER;
+
+Table dropped.
+
+SQL> CREATE TABLE CUSTOMER(ID INT,NAME VARCHAR(25),ADDRESS VARCHAR(50),CITY VARCHAR(25),COUNTRY VARCHAR(15),AGE INT,SALARY INT);
+
+Table created.
+
+SQL> DESC CUSTOMER;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID						    NUMBER(38)
+ NAME						    VARCHAR2(25)
+ ADDRESS					    VARCHAR2(50)
+ CITY						    VARCHAR2(25)
+ COUNTRY					    VARCHAR2(15)
+ AGE						    NUMBER(38)
+ SALARY 					    NUMBER(38)
+
+SQL> INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY);
+Enter value for id: 1
+Enter value for name: KIARA 
+Enter value for address: DELHI
+Enter value for city: BANDRA
+Enter value for country: INDIA
+Enter value for age: 28
+Enter value for salary: 65000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(1,'KIARA','DELHI','BANDRA','INDIA',28,65000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for name: PRIYA
+Enter value for address: CHENNAI
+Enter value for city: KOTTUR
+Enter value for country: INDIA
+Enter value for age: 32
+Enter value for salary: 40000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(2,'PRIYA','CHENNAI','KOTTUR','INDIA',32,40000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for name: ADHITYAN
+Enter value for address: KOZHIKODE
+Enter value for city: VADAKARA
+Enter value for country: INDIA
+Enter value for age: 27
+Enter value for salary: 39000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(3,'ADHITYAN','KOZHIKODE','VADAKARA','INDIA',27,39000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 4
+Enter value for name: RAYANSH
+Enter value for address: MAHARASHTRA
+Enter value for city: NAZIK
+Enter value for country: INDIA
+Enter value for age: 30
+Enter value for salary: 65000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(4,'RAYANSH','MAHARASHTRA','NAZIK','INDIA',30,65000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 5
+Enter value for name: AARADHNA
+Enter value for address: UTTAR PRADESH
+Enter value for city: LUCKNOW
+Enter value for country: INDIA
+Enter value for age: 33
+Enter value for salary: 40000
+old   1: INSERT INTO CUSTOMER VALUES(&ID,'&NAME','&ADDRESS','&CITY','&COUNTRY',&AGE,&SALARY)
+new   1: INSERT INTO CUSTOMER VALUES(5,'AARADHNA','UTTAR PRADESH','LUCKNOW','INDIA',33,40000)
+
+1 row created.
+
+SQL> SELECT * FROM CUSTOMER;
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 1 KIARA
+DELHI						   BANDRA
+INDIA			28	65000
+
+	 2 PRIYA
+CHENNAI 					   KOTTUR
+INDIA			32	40000
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+
+	 3 ADHITYAN
+KOZHIKODE					   VADAKARA
+INDIA			27	39000
+
+	 4 RAYANSH
+MAHARASHTRA					   NAZIK
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+INDIA			30	65000
+
+	 5 AARADHNA
+UTTAR PRADESH					   LUCKNOW
+INDIA			33	40000
+
+
+SQL> SELECT * FROM CUSTOMER WHERE NAME LIKE 'P%'; 
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 2 PRIYA
+CHENNAI 					   KOTTUR
+INDIA			32	40000
+
+
+SQL> SELECT * FROM CUSTOMER WHERE NMAE LIKE '%YA%;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> SELECT * FROM CUSTOMER WHERE NAME LIKE '%YA%';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 2 PRIYA
+CHENNAI 					   KOTTUR
+INDIA			32	40000
+
+	 3 ADHITYAN
+KOZHIKODE					   VADAKARA
+INDIA			27	39000
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+
+	 4 RAYANSH
+MAHARASHTRA					   NAZIK
+INDIA			30	65000
+
+
+SQL> SELECT * FROM CUSTOMER WHERE CITY LIKE '%A';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 1 KIARA
+DELHI						   BANDRA
+INDIA			28	65000
+
+	 3 ADHITYAN
+KOZHIKODE					   VADAKARA
+INDIA			27	39000
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+
+
+SQL> SELECT * FROM CUSTOMER WHERE AHE LIKE '2%';
+SELECT * FROM CUSTOMER WHERE AHE LIKE '2%'
+                             *
+ERROR at line 1:
+ORA-00904: "AHE": invalid identifier
+
+
+SQL> SELECT * FROM CUSTOMER WHERE AGE LIKE '2%';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 1 KIARA
+DELHI						   BANDRA
+INDIA			28	65000
+
+	 3 ADHITYAN
+KOZHIKODE					   VADAKARA
+INDIA			27	39000
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+
+
+SQL> SELECT * FROM CUSTOMER WHERE SALARY LIKE '%50%';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 1 KIARA
+DELHI						   BANDRA
+INDIA			28	65000
+
+	 4 RAYANSH
+MAHARASHTRA					   NAZIK
+INDIA			30	65000
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+
+
+SQL> SELECT * FROM CUSTOMER WHERE CITY LIKE 'NA_IK';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 4 RAYANSH
+MAHARASHTRA					   NAZIK
+INDIA			30	65000
+
+
+SQL> SELECT * FROM CUSTOMER WHERE SALARY LIKE '3__00';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 3 ADHITYAN
+KOZHIKODE					   VADAKARA
+INDIA			27	39000
+
+
+SQL> SELECT * FROM CUSTOMER NAME LIKE '____A%';
+SELECT * FROM CUSTOMER NAME LIKE '____A%'
+                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT * FROM CUSTOMER WHERE NAME LIKE '____A%';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 1 KIARA
+DELHI						   BANDRA
+INDIA			28	65000
+
+	 2 PRIYA
+CHENNAI 					   KOTTUR
+INDIA			32	40000
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+
+
+SQL> SELECT * FROM CUSTOMER WHERE NAME NOT LIKE 'PRIYA';
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+	 1 KIARA
+DELHI						   BANDRA
+INDIA			28	65000
+
+	 3 ADHITYAN
+KOZHIKODE					   VADAKARA
+INDIA			27	39000
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+
+	 4 RAYANSH
+MAHARASHTRA					   NAZIK
+INDIA			30	65000
+
+	 5 AARADHNA
+UTTAR PRADESH					   LUCKNOW
+
+	ID NAME
+---------- -------------------------
+ADDRESS 					   CITY
+-------------------------------------------------- -------------------------
+COUNTRY 	       AGE     SALARY
+--------------- ---------- ----------
+INDIA			33	40000
+
+
+SQL> 
+
