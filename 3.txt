@@ -1,0 +1,270 @@
+SQL> CREATE TABLE DEPT(DEPT_ID INT PRIMARY KEY,DEPT_NAME VARCHAR(30),CITY VARCHAR(30));
+
+Table created.
+
+SQL> DESC DEPT;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID				   NOT NULL NUMBER(38)
+ DEPT_NAME					    VARCHAR2(30)
+ CITY						    VARCHAR2(30)
+
+SQL> CREATE TABLE EMP(EMP_ID INT PRIMARY KEY,EMP_NAME VARCHAR(25),DEPT_ID FOREIGN KEY,SALARY INT);
+CREATE TABLE EMP(EMP_ID INT PRIMARY KEY,EMP_NAME VARCHAR(25),DEPT_ID FOREIGN KEY,SALARY INT)
+                                                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE EMP(EMP_ID INT PRIMARY KEY,EMP_NAME VARCHAR(25),DEPT_ID(FOREIGN KEY),SALARY INT);
+CREATE TABLE EMP(EMP_ID INT PRIMARY KEY,EMP_NAME VARCHAR(25),DEPT_ID(FOREIGN KEY),SALARY INT)
+                                                                    *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE EMP(EMP_ID INT PRIMARY KEY,EMP_NAME VARCHAR(25),FOREIGN KEY(DEPT_ID) REFERENCES DEPT(DEPT_ID));
+CREATE TABLE EMP(EMP_ID INT PRIMARY KEY,EMP_NAME VARCHAR(25),FOREIGN KEY(DEPT_ID) REFERENCES DEPT(DEPT_ID))
+                                                                         *
+ERROR at line 1:
+ORA-00904: "DEPT_ID": invalid identifier
+
+
+SQL> CREATE TABLE EMP(EMP_ID INT PRIMARY KEY,EMP_NAME VARCHAR(30),DEPT_ID INT,SALARY INT,FOREIGN KEY(DEPT_ID) REFERENCES DEPT(DEPT_ID));
+
+Table created.
+
+SQL> DESC EMP;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID 				   NOT NULL NUMBER(38)
+ EMP_NAME					    VARCHAR2(30)
+ DEPT_ID					    NUMBER(38)
+ SALARY 					    NUMBER(38)
+
+SQL> INSERT INTO DEPT VALUES(1,'BCA','KOCHI'),(2,'BA','CALICUT'),(3,'BSC','THRISSUR'),(4,'BBA','KOLLAM'),(5,'BCOM','IDUKKI');
+INSERT INTO DEPT VALUES(1,'BCA','KOCHI'),(2,'BA','CALICUT'),(3,'BSC','THRISSUR'),(4,'BBA','KOLLAM'),(5,'BCOM','IDUKKI')
+                                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> INSERT INTO DEPT VALUES((1,'BCA','KOCHI'),(2,'BA','CALICUT'),(3,'BSC','THRISSUR'),(4,'BBA','KOLLAM'),(5,'BCOM','IDUKKI'));
+INSERT INTO DEPT VALUES((1,'BCA','KOCHI'),(2,'BA','CALICUT'),(3,'BSC','THRISSUR'),(4,'BBA','KOLLAM'),(5,'BCOM','IDUKKI'))
+                          *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> INSERT INTO DEPT VALUES(('1','BCA','KOCHI'),('2','BA','CALICUT'),('3','BSC','THRISSUR'),('4','BBA','KOLLAM'),('5','BCOM','IDUKKI'));
+INSERT INTO DEPT VALUES(('1','BCA','KOCHI'),('2','BA','CALICUT'),('3','BSC','THRISSUR'),('4','BBA','KOLLAM'),('5','BCOM','IDUKKI'))
+                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> INSERT INTO DEPT(&DEPT_ID,'&DEPT_NAME','&CITY');
+Enter value for dept_id: 1
+Enter value for dept_name: BCA
+Enter value for city: KOCHI
+old   1: INSERT INTO DEPT(&DEPT_ID,'&DEPT_NAME','&CITY')
+new   1: INSERT INTO DEPT(1,'BCA','KOCHI')
+INSERT INTO DEPT(1,'BCA','KOCHI')
+                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> INSERT INTO DEPT VALUES(&DEPT_ID,'&DEPT_NAME','&CITY');
+Enter value for dept_id: 1
+Enter value for dept_name: BCA
+Enter value for city: KOCHI
+old   1: INSERT INTO DEPT VALUES(&DEPT_ID,'&DEPT_NAME','&CITY')
+new   1: INSERT INTO DEPT VALUES(1,'BCA','KOCHI')
+
+1 row created.
+
+SQL> /
+Enter value for dept_id: 2
+Enter value for dept_name: BSC
+Enter value for city: CALICUT
+old   1: INSERT INTO DEPT VALUES(&DEPT_ID,'&DEPT_NAME','&CITY')
+new   1: INSERT INTO DEPT VALUES(2,'BSC','CALICUT')
+
+1 row created.
+
+SQL> 3
+SP2-0226: Invalid line number
+SQL> BBA
+SP2-0042: unknown command "BBA" - rest of line ignored.
+SQL> /
+Enter value for dept_id: 3
+Enter value for dept_name: BBA
+Enter value for city: THRISSUR
+old   1: INSERT INTO DEPT VALUES(&DEPT_ID,'&DEPT_NAME','&CITY')
+new   1: INSERT INTO DEPT VALUES(3,'BBA','THRISSUR')
+
+1 row created.
+
+SQL> /
+Enter value for dept_id: 4
+Enter value for dept_name: BCOM
+Enter value for city: IDUKKI
+old   1: INSERT INTO DEPT VALUES(&DEPT_ID,'&DEPT_NAME','&CITY')
+new   1: INSERT INTO DEPT VALUES(4,'BCOM','IDUKKI')
+
+1 row created.
+
+SQL> /
+Enter value for dept_id: 5
+Enter value for dept_name: BA
+Enter value for city: KOLLAM
+old   1: INSERT INTO DEPT VALUES(&DEPT_ID,'&DEPT_NAME','&CITY')
+new   1: INSERT INTO DEPT VALUES(5,'BA','KOLLAM')
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+   DEPT_ID DEPT_NAME			  CITY
+---------- ------------------------------ ------------------------------
+	 1 BCA				  KOCHI
+	 2 BSC				  CALICUT
+	 3 BBA				  THRISSUR
+	 4 BCOM 			  IDUKKI
+	 5 BA				  KOLLAM
+
+SQL> INSERT INTO EMP VALUES(&EMP_ID,'&EMP_NAME',&DEPT_ID,&SALARY);
+Enter value for emp_id: 1
+Enter value for emp_name: JAIDEN
+Enter value for dept_id: 1
+Enter value for salary: 60000
+old   1: INSERT INTO EMP VALUES(&EMP_ID,'&EMP_NAME',&DEPT_ID,&SALARY)
+new   1: INSERT INTO EMP VALUES(1,'JAIDEN',1,60000)
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: 2
+Enter value for emp_name: CYRIL
+Enter value for dept_id: 2
+Enter value for salary: 59000
+old   1: INSERT INTO EMP VALUES(&EMP_ID,'&EMP_NAME',&DEPT_ID,&SALARY)
+new   1: INSERT INTO EMP VALUES(2,'CYRIL',2,59000)
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: 3
+Enter value for emp_name: AJITH
+Enter value for dept_id: 3
+Enter value for salary: 60000
+old   1: INSERT INTO EMP VALUES(&EMP_ID,'&EMP_NAME',&DEPT_ID,&SALARY)
+new   1: INSERT INTO EMP VALUES(3,'AJITH',3,60000)
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: 4
+Enter value for emp_name: DELWIN
+Enter value for dept_id: 4
+Enter value for salary: 58000
+old   1: INSERT INTO EMP VALUES(&EMP_ID,'&EMP_NAME',&DEPT_ID,&SALARY)
+new   1: INSERT INTO EMP VALUES(4,'DELWIN',4,58000)
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: 5
+Enter value for emp_name: ASWIN
+Enter value for dept_id: 5
+Enter value for salary: 55000
+old   1: INSERT INTO EMP VALUES(&EMP_ID,'&EMP_NAME',&DEPT_ID,&SALARY)
+new   1: INSERT INTO EMP VALUES(5,'ASWIN',5,55000)
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+    EMP_ID EMP_NAME			     DEPT_ID	 SALARY
+---------- ------------------------------ ---------- ----------
+	 1 JAIDEN				   1	  60000
+	 2 CYRIL				   2	  59000
+	 3 AJITH				   3	  60000
+	 4 DELWIN				   4	  58000
+	 5 ASWIN				   5	  55000
+
+SQL> UPDATE EMP SET SALARY=56000 WHERE EMP_NAME='ASWIN';
+
+1 row updated.
+
+SQL> SELECT * FROM EMP;
+
+    EMP_ID EMP_NAME			     DEPT_ID	 SALARY
+---------- ------------------------------ ---------- ----------
+	 1 JAIDEN				   1	  60000
+	 2 CYRIL				   2	  59000
+	 3 AJITH				   3	  60000
+	 4 DELWIN				   4	  58000
+	 5 ASWIN				   5	  56000
+
+SQL> UPDATE DEPT SET CITY='TRIVANDRUM' WHERE DEPT_NAME='BA';
+
+1 row updated.
+
+SQL> SELECT * FROM DEPT;
+
+   DEPT_ID DEPT_NAME			  CITY
+---------- ------------------------------ ------------------------------
+	 1 BCA				  KOCHI
+	 2 BSC				  CALICUT
+	 3 BBA				  THRISSUR
+	 4 BCOM 			  IDUKKI
+	 5 BA				  TRIVANDRUM
+
+SQL> DELETE FROM EMP WHERE EMP_ID=5;
+
+1 row deleted.
+
+SQL> SELECT * FRO, DEPT
+  2  SELECT * FROM DEPT;
+SELECT * FRO, DEPT
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT * FROM DEPT;
+
+   DEPT_ID DEPT_NAME			  CITY
+---------- ------------------------------ ------------------------------
+	 1 BCA				  KOCHI
+	 2 BSC				  CALICUT
+	 3 BBA				  THRISSUR
+	 4 BCOM 			  IDUKKI
+	 5 BA				  TRIVANDRUM
+
+SQL> SELECT * FROM EMP;
+
+    EMP_ID EMP_NAME			     DEPT_ID	 SALARY
+---------- ------------------------------ ---------- ----------
+	 1 JAIDEN				   1	  60000
+	 2 CYRIL				   2	  59000
+	 3 AJITH				   3	  60000
+	 4 DELWIN				   4	  58000
+
+SQL> DELETE FROM DEPT WHERE DEPT_ID=5;
+
+1 row deleted.
+
+SQL> SELECT * FROM DEPT;
+
+   DEPT_ID DEPT_NAME			  CITY
+---------- ------------------------------ ------------------------------
+	 1 BCA				  KOCHI
+	 2 BSC				  CALICUT
+	 3 BBA				  THRISSUR
+	 4 BCOM 			  IDUKKI
+
+SQL> 
+
