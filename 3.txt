@@ -267,4 +267,22 @@ SQL> SELECT * FROM DEPT;
 	 4 BCOM 			  IDUKKI
 
 SQL> 
+SQL> SELECT * FROM DEPT;
+
+   DEPT_ID DEPT_NAME			  CITY
+---------- ------------------------------ ------------------------------
+	 1 HR				  KOCHI
+	 2 SALES			  CALICUT
+	 3 MANAGER			  THRISSUR
+	 4 SALES			  IDUKKI
+
+SQL> SELECT * FROM EMP;
+
+    EMP_ID EMP_NAME			     DEPT_ID	 SALARY
+---------- ------------------------------ ---------- ----------
+	 1 JAIDEN				   1	  60000
+	 2 CYRIL				   2	  59000
+	 3 AJITH				   3	  60000
+	 4 DELWIN				   4	  58000
+
 
