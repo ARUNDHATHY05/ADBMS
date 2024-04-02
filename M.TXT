@@ -1,0 +1,96 @@
+CREATE TABLE MOVIES (MID INT PRIMARY KEY,MNAME VARCHAR(80),RATING INT,DAY DATE);
+
+Table created.
+
+INSERT INTO MOVIES VALUES(&MID,'&MNAME',&RATING,'&DAY');
+Enter value for mid: 1
+Enter value for mname: MY NAME IS KHAN
+Enter value for rating: 8
+Enter value for day: 12/02/2010
+old   1: INSERT INTO MOVIES VALUES(&MID,'&MNAME',&RATING,'&DAY')
+new   1: INSERT INTO MOVIES VALUES(1,'MY NAME IS KHAN',8,'12/02/2010')
+
+1 row created.
+
+Enter value for mid: 2
+Enter value for mname: SWADES 
+Enter value for rating: 8
+Enter value for day: 17/12/2004
+old   1: INSERT INTO MOVIES VALUES(&MID,'&MNAME',&RATING,'&DAY')
+new   1: INSERT INTO MOVIES VALUES(2,'SWADES',8,'17/12/2004')
+
+1 row created.
+
+Enter value for mid: 3
+Enter value for mname: FAN
+Enter value for rating: 6
+Enter value for day: 15/04/2016
+old   1: INSERT INTO MOVIES VALUES(&MID,'&MNAME',&RATING,'&DAY')
+new   1: INSERT INTO MOVIES VALUES(3,'FAN',6,'15/04/2016')
+
+1 row created.
+
+Enter value for mid: 4
+Enter value for mname: DON
+Enter value for rating: 7
+Enter value for day: 20/10/2006
+old   1: INSERT INTO MOVIES VALUES(&MID,'&MNAME',&RATING,'&DAY')
+new   1: INSERT INTO MOVIES VALUES(4,'DON',7,'20/10/2006')
+
+1 row created.
+
+Enter value for mid: 5
+Enter value for mname: OM SHANTI OM
+Enter value for rating: 7
+Enter value for day: 09/11/2007
+old   1: INSERT INTO MOVIES VALUES(&MID,'&MNAME',&RATING,'&DAY')
+new   1: INSERT INTO MOVIES VALUES(5,'OM SHANTI OM',7,'09/11/2007')
+
+1 row created.
+
+COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM MOVIES;
+
+       MID
+----------
+MNAME
+--------------------------------------------------------------------------------
+    RATING DAY
+---------- --------
+	 1
+MY NAME IS KHAN
+	 8 12-02-10
+
+	 2
+SWADES
+	 8 17-12-04
+
+       MID
+----------
+MNAME
+--------------------------------------------------------------------------------
+    RATING DAY
+---------- --------
+
+	 3
+FAN
+	 6 15-04-16
+
+	 4
+DON
+
+       MID
+----------
+MNAME
+--------------------------------------------------------------------------------
+    RATING DAY
+---------- --------
+	 7 20-10-06
+
+	 5
+OM SHANTI OM
+	 7 09-11-07
+
