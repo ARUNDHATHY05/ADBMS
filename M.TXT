@@ -1,132 +1,152 @@
-CREATE TABLE COLORS(CID INT PRIMARY KEY,NAME VARCHAR(50));
+SQL> CREATE TABLE STUDENTS(SID INT PRIMARY KEY,SNAME VARCHAR(50),AGE INT);
 
 Table created.
 
-SQL> INSERT INTO COLORS VALUES(&CID,'&NAME');
-Enter value for cid: 1
-Enter value for name: BLUE
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(1,'BLUE')
+SQL> DESC STUDENTS;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID					   NOT NULL NUMBER(38)
+ SNAME						    VARCHAR2(50)
+ AGE						    NUMBER(38)
+
+SQL> INSERT INTO STUDENTS VALUES(&SID,'&SNAME',&AGE);
+Enter value for sid: 1
+Enter value for sname: JAIDEN
+Enter value for age: 22
+old   1: INSERT INTO STUDENTS VALUES(&SID,'&SNAME',&AGE)
+new   1: INSERT INTO STUDENTS VALUES(1,'JAIDEN',22)
 
 1 row created.
 
 SQL> /
-Enter value for cid: 2
-Enter value for name: PINK
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(2,'PINK')
+Enter value for sid: 2 
+Enter value for sname: AJITH
+Enter value for age: 24
+old   1: INSERT INTO STUDENTS VALUES(&SID,'&SNAME',&AGE)
+new   1: INSERT INTO STUDENTS VALUES(2,'AJITH',24)
 
 1 row created.
 
 SQL> /
-Enter value for cid: 3
-Enter value for name: YELLOW
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(3,'YELLOW')
+Enter value for sid: DELWIN
+Enter value for sname: 
+Enter value for age: 
+old   1: INSERT INTO STUDENTS VALUES(&SID,'&SNAME',&AGE)
+new   1: INSERT INTO STUDENTS VALUES(DELWIN,'',)
+INSERT INTO STUDENTS VALUES(DELWIN,'',)
+                                      *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> /
+Enter value for sid: 3
+Enter value for sname: DELWIN
+Enter value for age: 23
+old   1: INSERT INTO STUDENTS VALUES(&SID,'&SNAME',&AGE)
+new   1: INSERT INTO STUDENTS VALUES(3,'DELWIN',23)
 
 1 row created.
 
 SQL> 4
 SP2-0226: Invalid line number
 SQL> /
-Enter value for cid: 4
-Enter value for name: RED
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(4,'RED')
-
-1 row created.
-
-SQL> 5
-SP2-0226: Invalid line number
-SQL> /
-Enter value for cid: 5
-Enter value for name: GREEN
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(5,'GREEN')
-
-1 row created.
-
- SELECT * FROM COLORS;
-
-       CID NAME
----------- --------------------------------------------------
-	 1 BLUE
-	 2 PINK
-	 3 YELLOW
-	 4 RED
-	 5 GREEN
-
-
-INSERT INTO COLORS VALUES(&CID,'&NAME');
-Enter value for cid: 6
-Enter value for name: BLACK
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(6,'BLACK')
+Enter value for sid: 4
+Enter value for sname: SOURAV
+Enter value for age: 25
+old   1: INSERT INTO STUDENTS VALUES(&SID,'&SNAME',&AGE)
+new   1: INSERT INTO STUDENTS VALUES(4,'SOURAV',25)
 
 1 row created.
 
 SQL> /
-Enter value for cid: 7
-Enter value for name: WHITE
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(7,'WHITE')
+Enter value for sid: 5
+Enter value for sname: ARJUN
+Enter value for age: 30
+old   1: INSERT INTO STUDENTS VALUES(&SID,'&SNAME',&AGE)
+new   1: INSERT INTO STUDENTS VALUES(5,'ARJUN',30)
 
 1 row created.
 
-SAVEPOINT A;
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM STUDENTS;
+
+       SID SNAME						     AGE
+---------- -------------------------------------------------- ----------
+	 1 JAIDEN						      22
+	 2 AJITH						      24
+	 3 DELWIN						      23
+	 4 SOURAV						      25
+	 5 ARJUN						      30
+
+SQL>  INSERT INTO STUDENTS VALUES(6,'JAYAKRISHNAN',25);
+
+1 row created.
+
+SQL> INSERT INTO STUDENTS VALUES(7,'CYRIL',22);
+
+1 row created.
+
+SQL> SAVEPOINT A;
 
 Savepoint created.
-INSERT INTO COLORS VALUES(&CID,'&NAME');
-Enter value for cid: 8
-Enter value for name: VIOLET
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(8,'VIOLET')
+
+SQL> INSERT INTO STUDENTS VALUES(8,'NIKHIL',30);
 
 1 row created.
 
-SQL> /
-Enter value for cid: 9
-Enter value for name: ORANGE
-old   1: INSERT INTO COLORS VALUES(&CID,'&NAME')
-new   1: INSERT INTO COLORS VALUES(9,'ORANGE')
+SQL> INSERT INTO STUDENTS VALUES(9,'CYRIL',26);
 
 1 row created.
 
-SELECT * FROM COLORS;
+SQL> SELECT * FROM STUDENTS;
 
-       CID NAME
----------- --------------------------------------------------
-	 1 BLUE
-	 2 PINK
-	 3 YELLOW
-	 4 RED
-	 5 GREEN
-	 6 BLACK
-	 7 WHITE
-	 8 VIOLET
-	 9 ORANGE
+       SID SNAME						     AGE
+---------- -------------------------------------------------- ----------
+	 1 JAIDEN						      22
+	 2 AJITH						      24
+	 3 DELWIN						      23
+	 4 SOURAV						      25
+	 5 ARJUN						      30
+	 6 JAYAKRISHNAN 					      25
+	 7 CYRIL						      22
+	 8 NIKHIL						      30
+	 9 CYRIL						      26
 
 9 rows selected.
 
-
- ROLLBACK TO A;
+SQL> ROLLBACK TO A;
 
 Rollback complete.
 
-SQL> SELECT * FROM COLORS;
+SQL> SELECT * FROM STUDENTS;
 
-       CID NAME
----------- --------------------------------------------------
-	 1 BLUE
-	 2 PINK
-	 3 YELLOW
-	 4 RED
-	 5 GREEN
-	 6 BLACK
-	 7 WHITE
+       SID SNAME						     AGE
+---------- -------------------------------------------------- ----------
+	 1 JAIDEN						      22
+	 2 AJITH						      24
+	 3 DELWIN						      23
+	 4 SOURAV						      25
+	 5 ARJUN						      30
+	 6 JAYAKRISHNAN 					      25
+	 7 CYRIL						      22
 
 7 rows selected.
 
-ROLLBACK;
+SQL> ROLLBACK; 
 
 Rollback complete.
+
+SQL> SELECT * FROM STUDENTS;
+
+       SID SNAME						     AGE
+---------- -------------------------------------------------- ----------
+	 1 JAIDEN						      22
+	 2 AJITH						      24
+	 3 DELWIN						      23
+	 4 SOURAV						      25
+	 5 ARJUN						      30
+
