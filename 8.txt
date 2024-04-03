@@ -89,3 +89,51 @@ Connected.
 grant dba to ARUNDHATHY with admin option;
 
 Grant succeeded.
+
+create user jaiden identified by jai;
+
+User created.
+
+grant resource,connect to jaiden;
+
+Grant succeeded.
+
+connect jaiden/jai;
+Connected.
+
+select * from places;
+select * from places
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+connect ARUNDHATHY/aru17;
+Connected.
+
+grant select,insert on PLACES to jaiden with grant option;
+
+Grant succeeded.
+
+connect jaiden/jai;
+Connected.
+SQL> select * from ARUNDHATHY.PLACES;
+
+       PID PNAME
+---------- --------------------------------------------------
+	 1 BANGLORE
+	 2 THRISSUR
+	 3 KOCHI
+	 4 CANADA
+	 5 PALAKKAD
+
+SQL> connect ARUNDHATHY/aru17;
+Connected.
+SQL> revoke select on PLACES from jaiden;
+
+Revoke succeeded.
+
+SQL> connect sys/123 as sysdba;
+Connected.
+SQL> revoke dba from ARUNDHATHY;
+
+Revoke succeeded.
