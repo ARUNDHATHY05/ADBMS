@@ -1,0 +1,91 @@
+1.sho user;
+  USER is "SYS"
+2.select  * from all_users;
+
+USERNAME			  USER_ID CREATED
+------------------------------ ---------- --------
+XS$NULL 		       2147483638 28-08-11
+APEX_040000			       47 28-08-11
+APEX_PUBLIC_USER		       45 28-08-11
+FLOWS_FILES			       44 28-08-11
+HR				       43 28-08-11
+MDSYS				       42 28-08-11
+ANONYMOUS			       35 28-08-11
+XDB				       34 28-08-11
+CTXSYS				       32 28-08-11
+OUTLN					9 28-08-11
+SYSTEM					5 28-08-11
+
+USERNAME			  USER_ID CREATED
+------------------------------ ---------- --------
+SYS					0 28-08-11
+
+12 rows selected.
+
+3.select * from tab;
+
+TNAME			       TABTYPE	CLUSTERID
+------------------------------ ------- ----------
+ACCESS$ 		       TABLE
+ALERT_QT		       TABLE
+ALL_ALL_TABLES		       VIEW
+ALL_APPLY		       VIEW
+ALL_APPLY_CHANGE_HANDLERS      VIEW
+ALL_APPLY_CONFLICT_COLUMNS     VIEW
+ALL_APPLY_DML_CONF_HANDLERS    VIEW
+ALL_APPLY_DML_HANDLERS	       VIEW
+ALL_APPLY_ENQUEUE	       VIEW
+ALL_APPLY_ERROR 	       VIEW
+ALL_APPLY_ERROR_MESSAGES       VIEW
+
+4.
+create user ARUNDHATHY identified by aru17;
+
+User created.
+
+SQL> grant resource,connect to ARUNDHATHY;
+
+Grant succeeded.
+
+SQL> connect ARUNDHATHY/aru17;
+Connected.
+SQL> CREATE TABLE PLACES(PID INT PRIMARY KEY,PNAME VARCHAR(50));
+
+Table created.
+
+SQL> INSERT INTO PLACES VALUES(1,'BANGLORE');
+
+1 row created.
+
+SQL> INSERT INTO PLACES VALUES(2,'THRISSUR');
+
+1 row created.
+
+SQL> INSERT INTO PLACES VALUES(3,'KOCHI'); 
+
+1 row created.
+
+SQL> INSERT INTO PLACES VALUES(4,'CANADA');               
+
+1 row created.
+
+SQL>  INSERT INTO PLACES VALUES(5,'PALAKKAD');
+
+1 row created.
+
+SQL> SELECT * FROM PLACES;
+
+       PID PNAME
+---------- --------------------------------------------------
+	 1 BANGLORE
+	 2 THRISSUR
+	 3 KOCHI
+	 4 CANADA
+	 5 PALAKKAD
+
+connect sys/123 as sysdba;
+Connected.
+
+grant dba to ARUNDHATHY with admin option;
+
+Grant succeeded.
