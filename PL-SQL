@@ -1,0 +1,46 @@
+Write a PL/SQL program to calculate area of a circle.
+
+SQL> SET SERVEROUTPUT ON
+SQL> DECLARE
+  2  AREA NUMBER(7,3);
+  3  PI CONSTANT NUMBER := 3.14;
+  4  RADIUS NUMBER(7);
+  5  BEGIN
+  6  RADIUS := &RADIUS;
+  7  AREA := PI*POWER(RADIUS, 2);
+  8  DBMS_OUTPUT.PUT_LINE('RADIUS = ' || RADIUS);
+  9  DBMS_OUTPUT.PUT_LINE('AREA = '||AREA);
+ 10  END;
+ 11  /
+Enter value for radius: 3
+old   6:  RADIUS := &RADIUS;
+new   6:  RADIUS := 3;
+RADIUS = 3
+AREA = 28.26
+
+PL/SQL procedure successfully completed.
+
+Execute QN no 9 using LOOP and Branch Statements.
+
+SET SERVEROUTPUT ON;
+DECLARE
+  AREA NUMBER(7,3);
+  PI CONSTANT NUMBER := 3.14;
+  RADIUS NUMBER(7);
+  NUM_LOOPS NUMBER;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Enter the number of times to calculate area:');
+  NUM_LOOPS := &NUM_LOOPS;
+
+  FOR i IN 1..NUM_LOOPS LOOP
+    DBMS_OUTPUT.PUT_LINE('Enter radius: ' || i );
+    RADIUS := &RADIUS;    
+    IF RADIUS > 0 THEN
+      AREA := PI * POWER(RADIUS, 2);
+      DBMS_OUTPUT.PUT_LINE('Iteration ' || i);
+      DBMS_OUTPUT.PUT_LINE('RADIUS = ' || RADIUS);
+      DBMS_OUTPUT.PUT_LINE('AREA = ' || AREA);
+    END IF;
+  END LOOP;
+END;
+/
