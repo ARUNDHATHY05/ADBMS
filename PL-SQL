@@ -55,3 +55,39 @@ new   2: 	r int:=5;
 area is 78.5
 
 PL/SQL procedure successfully completed.
+
+Write a PL/SQL program to find factorial of a number.
+
+SET SERVEROUTPUT ON;
+DECLARE
+  num NUMBER := &num; 
+  factorial NUMBER := 1;
+BEGIN
+  IF num < 0 THEN
+    DBMS_OUTPUT.PUT_LINE('Factorial not defined for negative numbers.');
+  ELSE
+    FOR i IN REVERSE 1..num LOOP
+      factorial := factorial * i;
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || num || ' is: ' || factorial);
+  END IF;
+END;
+/
+
+SET SERVEROUTPUT ON;
+DECLARE
+  num NUMBER := &num; 
+  factorial NUMBER := 1;
+BEGIN
+  IF num < 0 THEN
+    DBMS_OUTPUT.PUT_LINE('Factorial not defined for negative numbers.');
+  ELSE
+    FOR i IN REVERSE 1..num LOOP
+      factorial := factorial * i;
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || num || ' is: ' || factorial);
+  END IF;
+END;
+/
+
+
