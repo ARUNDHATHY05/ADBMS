@@ -80,6 +80,51 @@ old   2:   num NUMBER := &num;
 new   2:   num NUMBER := 5;
 Factorial of 5 is: 120
 
+---------------------------Write a PL/SQL program to check whether a number is odd or even-------------------------
 
+SET SERVEROUTPUT ON;
+DECLARE
+  num NUMBER := &num;
+BEGIN
+  IF MOD(num, 2) = 0 
+  THEN
+    DBMS_OUTPUT.PUT_LINE(num || ' is an even number.');
+  ELSE
+
+    DBMS_OUTPUT.PUT_LINE(num || ' is an odd number.');
+  END IF;
+END;
+/
+
+
+SQL> @E.sql
+Enter value for num: 17
+old   2:   num NUMBER := &num;
+new   2:   num NUMBER := 17;
+17 is an odd number.
+
+---------------------------------Write a PL SQL code for reverse a string.--------------------------------
+
+SET SERVEROUTPUT ON;
+DECLARE
+  num NUMBER := &num;
+BEGIN
+  IF MOD(num, 2) = 0 
+  THEN
+    DBMS_OUTPUT.PUT_LINE(num || ' is an even number.');
+  ELSE
+
+    DBMS_OUTPUT.PUT_LINE(num || ' is an odd number.');
+  END IF;
+END;
+/
+
+SQL> @b.sql
+Enter value for str: jaiden
+old   7: 	 str:='&str';
+new   7: 	 str:='jaiden';
+reversed string:nediaj
+
+PL/SQL procedure successfully completed.
 
 
