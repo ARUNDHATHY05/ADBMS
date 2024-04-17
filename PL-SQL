@@ -12,11 +12,17 @@ SQL> DECLARE
   9  DBMS_OUTPUT.PUT_LINE('AREA = '||AREA);
  10  END;
  11  /
-Enter value for radius: 3
-old   6:  RADIUS := &RADIUS;
-new   6:  RADIUS := 3;
-RADIUS = 3
-AREA = 28.26
+
+
+@P9.sql
+Enter value for radius: 5
+old   6: RADIUS := &RADIUS;
+new   6: RADIUS := 5;
+RADIUS = 5
+AREA = 78.5
+
+PL/SQL procedure successfully completed.
+
 
 PL/SQL procedure successfully completed.
 
