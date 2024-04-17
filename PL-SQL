@@ -1,4 +1,4 @@
-Write a PL/SQL program to calculate area of a circle.
+ --------------Write a PL/SQL program to calculate area of a circle.------------------
 
 SQL> SET SERVEROUTPUT ON
 SQL> DECLARE
@@ -26,7 +26,7 @@ PL/SQL procedure successfully completed.
 
 PL/SQL procedure successfully completed.
 
-Execute QN no 9 using LOOP and Branch Statements.
+-----------------Execute QN no 9 using LOOP and Branch Statements.---------------------
 
 SET SERVEROUTPUT ON;
 declare
@@ -56,7 +56,7 @@ area is 78.5
 
 PL/SQL procedure successfully completed.
 
-Write a PL/SQL program to find factorial of a number.
+----------------------------Write a PL/SQL program to find factorial of a number.-----------------------
 
 SET SERVEROUTPUT ON;
 DECLARE
