@@ -41,3 +41,11 @@ begin
 	end if;
 end;
 /
+
+
+Enter value for radius: 5 
+old   2: 	r int:=&radius;
+new   2: 	r int:=5;
+area is 78.5
+
+PL/SQL procedure successfully completed.
