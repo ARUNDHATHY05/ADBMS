@@ -74,20 +74,12 @@ BEGIN
 END;
 /
 
-SET SERVEROUTPUT ON;
-DECLARE
-  num NUMBER := &num; 
-  factorial NUMBER := 1;
-BEGIN
-  IF num < 0 THEN
-    DBMS_OUTPUT.PUT_LINE('Factorial not defined for negative numbers.');
-  ELSE
-    FOR i IN REVERSE 1..num LOOP
-      factorial := factorial * i;
-    END LOOP;
-    DBMS_OUTPUT.PUT_LINE('Factorial of ' || num || ' is: ' || factorial);
-  END IF;
-END;
-/
+SQL> @l.sql
+Enter value for num: 5
+old   2:   num NUMBER := &num;
+new   2:   num NUMBER := 5;
+Factorial of 5 is: 120
+
+
 
 
