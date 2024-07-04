@@ -1,0 +1,120 @@
+    4. Create database Book in MONGODB and make Collection with name "BookDetails"                                                                                         
+             
+use Book
+switched to db Book
+> db.createCollection("BookDetails")
+{ "ok" : 1 }
+
+
+    a. Insert Records into BookDetails Collection
+    
+    db.BookDetails.insertMany([
+...     {no:1, title:"Data Structure", author:"Lipschute", subject:"DS", publisher:"McGraw", quantity:4, price:217},
+...     {no:2, title:"DOS Guide", author:"NORTRON", subject:"OS", publisher:"PHI", quantity:3, price:175},
+...     {no:3, title:"Turbo C++", author:"Robort Lafore", subject:"Prog", publisher:"Galgotia", quantity:5, price:270},
+...     {no:4, title:"Dbase Dummies", author:"Palmer", subject:"DBMS", publisher:"PustakM", quantity:7, price:130},
+...     {no:5, title:"Mastering Windows", author:"Cowart", subject:"OS", publisher:"BPB", quantity:1, price:225}
+... ]);
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("66866f3da230bdb239745473"),
+		ObjectId("66866f3da230bdb239745474"),
+		ObjectId("66866f3da230bdb239745475"),
+		ObjectId("66866f3da230bdb239745476"),
+		ObjectId("66866f3da230bdb239745477")
+	]
+}
+
+    b. List all the details of Vehicle in a neat format.
+    
+  db.BookDetails.find() .pretty()
+{
+	"_id" : ObjectId("66866f3da230bdb239745473"),
+	"no" : 1,
+	"title" : "Data Structure",
+	"author" : "Lipschute",
+	"subject" : "DS",
+	"publisher" : "McGraw",
+	"quantity" : 4,
+	"price" : 217
+}
+{
+	"_id" : ObjectId("66866f3da230bdb239745474"),
+	"no" : 2,
+	"title" : "DOS Guide",
+	"author" : "NORTRON",
+	"subject" : "OS",
+	"publisher" : "PHI",
+	"quantity" : 3,
+	"price" : 175
+}
+{
+	"_id" : ObjectId("66866f3da230bdb239745475"),
+	"no" : 3,
+	"title" : "Turbo C++",
+	"author" : "Robort Lafore",
+	"subject" : "Prog",
+	"publisher" : "Galgotia",
+	"quantity" : 5,
+	"price" : 270
+}
+{
+	"_id" : ObjectId("66866f3da230bdb239745476"),
+	"no" : 4,
+	"title" : "Dbase Dummies",
+	"author" : "Palmer",
+	"subject" : "DBMS",
+	"publisher" : "PustakM",
+	"quantity" : 7,
+	"price" : 130
+}
+{
+	"_id" : ObjectId("66866f3da230bdb239745477"),
+	"no" : 5,
+	"title" : "Mastering Windows",
+	"author" : "Cowart",
+	"subject" : "OS",
+	"publisher" : "BPB",
+	"quantity" : 1,
+	"price" : 225
+}
+
+    c. Update Author of book  to “David” whose No is  2 
+    
+    db.BookDetails.updateOne(
+... ...     { no: "2" },
+... ...     { $set: { author: "David" } }
+... ... );
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+
+    d. Find total quantity of books in the library.
+    
+    db.BookDetails.aggregate([
+...     { $group: { _id: null, totalQuantity: { $sum: "$quantity" } } }
+... ]);
+{ "_id" : null, "totalQuantity" : 20 }
+
+    
+    e. Delete a document having No is 4
+    
+   db.BookDetails.deleteOne({ no: "4" })
+{ "acknowledged" : true, "deletedCount" : 0 }
+
+    
+    f. Create a user with name “Ram” and give read role to the user for Book database.
+
+db.createUser({
+... ... ...   user: "Ram",
+... ... ...   pwd: "password",
+... ... ...   roles: [{ role: "readWrite", db: "BookDetails" }]
+... ... ... })
+Successfully added user: {
+	"user" : "Ram",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "BookDetails"
+		}
+	]
+}
