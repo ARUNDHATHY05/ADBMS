@@ -1,0 +1,122 @@
+Create database Vehicle in MONGODB and make Collection with name "VehicleDetails"                                                                                         
+             
+
+    a. Insert Records into VechicleDetails Collection
+    
+    db.VechicleDetails.insertMany([
+...   { regno: "BRG446", make: "Ford", model: "Meteor", year: 2009, color: "White" },
+...   { regno: "VRG655", make: "Bmw", model: "Coupe", year: 2008, color: "Blue" },
+...   { regno: "NMT667", make: "Madza", model: "Delivery Van", year: 2010, color: "Green" },
+...   { regno: "CCT899", make: "Toyota", model: "HiLuxe", year: 2009, color: "Red" },
+...   { regno: "FGR122", make: "Mitsubishi", model: "Magna", year: 2007, color: "Purple" }
+... ]);
+
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("668667f8f518e437ab973b00"),
+		ObjectId("668667f8f518e437ab973b01"),
+		ObjectId("668667f8f518e437ab973b02"),
+		ObjectId("668667f8f518e437ab973b03"),
+		ObjectId("668667f8f518e437ab973b04")
+	]
+}
+
+
+
+    b. List all the details of Vehicle in a neat format.
+    
+    db.VechicleDetails.find() .pretty()
+{
+	"_id" : ObjectId("668667f8f518e437ab973b00"),
+	"regno" : "BRG446",
+	"make" : "Ford",
+	"model" : "Meteor",
+	"year" : 2009,
+	"color" : "White"
+}
+{
+	"_id" : ObjectId("668667f8f518e437ab973b01"),
+	"regno" : "VRG655",
+	"make" : "Bmw",
+	"model" : "Coupe",
+	"year" : 2008,
+	"color" : "Blue"
+}
+{
+	"_id" : ObjectId("668667f8f518e437ab973b02"),
+	"regno" : "NMT667",
+	"make" : "Madza",
+	"model" : "Delivery Van",
+	"year" : 2010,
+	"color" : "Green"
+}
+{
+	"_id" : ObjectId("668667f8f518e437ab973b03"),
+	"regno" : "CCT899",
+	"make" : "Toyota",
+	"model" : "HiLuxe",
+	"year" : 2009,
+	"color" : "Red"
+}
+{
+	"_id" : ObjectId("668667f8f518e437ab973b04"),
+	"regno" : "FGR122",
+	"make" : "Mitsubishi",
+	"model" : "Magna",
+	"year" : 2007,
+	"color" : "Purple"
+}
+
+    c. Find Document From the VehicleDetails collection where make begins with T
+    
+    db.VechicleDetails.find({"make": /^T/})
+{ "_id" : ObjectId("668667f8f518e437ab973b03"), "regno" : "CCT899", "make" : "Toyota", "model" : "HiLuxe", "year" : 2009, "color" : "Red" }
+
+
+    d. Update Colour Of vehicle to Blue whose RegNo is  FGR122 
+    
+ db.VehicleDetails.updateOne(
+...     { regno: "FGR122" },
+...     { $set: { color: "Blue" } }
+... );
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+
+
+    e. Add a New Field EngineNo to document with name "EnNo" 
+    
+db.VehicleDetails.updateMany({}, { $set: { EnNo: new Date("2024-05-09") } });
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+
+
+    f. Find total number of vehicles manufactured in the year 2009.
+    
+    db.VechicleDetails.aggregate([
+...     { $match: { year: 2009 } },
+...     { $group: { _id: null, count: { $sum: 1 } } }
+... ]);
+{ "_id" : null, "count" : 2 }
+
+    
+    g. Delete a document having RegNo BRG446.
+    
+    db.VechicleDetails.deleteOne({ regno: "BRG446" })
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+    
+    h. Create a user with name “Ram” and give read role to the user for Vehicle database.
+    
+    db.createUser({
+... ...   user: "Ram",
+... ...   pwd: "password",
+... ...   roles: [{ role: "readWrite", db: "VechicleDetails" }]
+... ... })
+Successfully added user: {
+	"user" : "Ram",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "VechicleDetails"
+		}
+	]
+}
